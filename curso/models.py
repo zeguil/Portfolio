@@ -5,7 +5,7 @@ class Curso(models.Model):
     carga_horaria = models.TimeField()
     conclusao = models.DateField()
     link = models.URLField(unique=True)
-    pdf = models.FileField(upload_to='certificado/')
+    pdf = models.FileField()
 
     class Meta:
         verbose_name = 'Curso'
