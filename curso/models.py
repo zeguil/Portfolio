@@ -14,6 +14,10 @@ class Curso(models.Model):
     def __str__(self):
         return self.nome
 
+    @property
+    def pdfname(self):
+        return self.pdf.name.split('/')[-1:][0]
+
     
 
 
