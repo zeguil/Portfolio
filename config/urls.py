@@ -7,11 +7,13 @@ from django.conf.urls.static import static
 
 from curso.viewsets import CursoViewSet
 from avaliacao.viewsets import AvaliacaoViewSet
+from contato.viewsets import ContatoViewSet
 
 router = DefaultRouter()
 
 router.register('avaliacao', AvaliacaoViewSet)
 router.register('cursos', CursoViewSet)
+router.register('contato', ContatoViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

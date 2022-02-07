@@ -2,9 +2,9 @@ from django.db import models
 
 class Curso(models.Model):
     nome = models.CharField(max_length=100)
-    carga_horaria = models.TimeField()
+    carga_horaria = models.IntegerField()
     conclusao = models.DateField()
-    link = models.URLField(unique=True)
+    link = models.URLField(blank=True,null=True, unique=True)
     pdf = models.FileField()
 
     class Meta:
@@ -15,7 +15,7 @@ class Curso(models.Model):
         return self.nome
 
     @property
-    def pdfname(self):
+    def nomepdf(self):
         return self.pdf.name.split('/')[-1:][0]
 
     

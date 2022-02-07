@@ -13,13 +13,15 @@ class CursoViewSet(ModelViewSet):
     queryset = Curso.objects.all()
     serializer_class = CursoSerializer
 
+    def query_set(self, request):
+        pass
+
     @action(methods=['GET'], detail=True)
     def download(self, request, **kwargs):
-        att = self.get_object()
-        file_handle = att.pdf.open()
-
-        mimetype, _ = mimetypes.guess_type(att.pdf.path)
-        response = FileResponse(file_handle, content_type=mimetype)
-        response['Content-Length'] = att.pdf.size
-        response['Content-Disposition'] = "attachment; filename={}".format(att.pdfname)
+        objeto = self.get_object()
+        identificador = objeto.pdf.open()
+        mimetype, _ = mimetypes.guess_type(objeto.pdf.path)
+        response = FileResponse(identificador, content_type=mimetype)
+        response['Content-Length'] = objeto.pdf.size
+        response['Content-Disposition'] = f"attachment; filename={objeto.nomepdf}"
         return response
