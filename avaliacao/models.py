@@ -2,7 +2,7 @@ from django.db import models
 from curso.models import Curso
 
 class Avaliacao(models.Model):
-    curso = models.ForeignKey(Curso, related_name='avaliacoes', on_delete=models.CASCADE)
+    curso = models.OneToOneField(Curso, related_name='avaliacoes', on_delete=models.CASCADE)
     nota = models.DecimalField(max_digits=2, decimal_places=1)
     comentario = models.TextField()
 
