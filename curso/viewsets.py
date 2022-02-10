@@ -1,7 +1,7 @@
 from rest_framework.decorators import action
 from rest_framework.viewsets import ModelViewSet
 from django_filters.rest_framework import DjangoFilterBackend
-
+from rest_framework.filters import SearchFilter
 import mimetypes
 from .models import Curso
 from .serializers import CursoSerializer
@@ -14,8 +14,9 @@ from django.http import FileResponse
 class CursoViewSet(ModelViewSet):
     queryset = Curso.objects.all()
     serializer_class = CursoSerializer
-    filter_backends = [DjangoFilterBackend]
+    filter_backends = [DjangoFilterBackend,SearchFilter ]
     filterset_fields = ['nome']
+    search_fields = ['nome']
     
     def query_set(self, request):
         pass
