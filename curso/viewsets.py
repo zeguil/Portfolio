@@ -6,6 +6,7 @@ import mimetypes
 from .models import Curso
 from .serializers import CursoSerializer
 from django.http import FileResponse
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 
 
@@ -14,6 +15,7 @@ from django.http import FileResponse
 class CursoViewSet(ModelViewSet):
     queryset = Curso.objects.all()
     serializer_class = CursoSerializer
+    permission_classes=[IsAuthenticatedOrReadOnly,]
     filter_backends = [DjangoFilterBackend,SearchFilter ]
     filterset_fields = ['nome']
     search_fields = ['nome']
